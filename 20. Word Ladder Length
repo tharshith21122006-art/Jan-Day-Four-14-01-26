@@ -1,0 +1,17 @@
+begin="hit"
+end="cog"
+wordList=["hot","dot","dog","lot","log","cog"]
+
+from collections import deque
+q=deque([(begin,1)])
+seen=set([begin])
+
+while q:
+    word,steps=q.popleft()
+    if word==end:
+        print(steps)
+        break
+    for w in wordList:
+        if w not in seen and sum(a!=b for a,b in zip(w,word))==1:
+            seen.add(w)
+            q.append((w,steps+1))
