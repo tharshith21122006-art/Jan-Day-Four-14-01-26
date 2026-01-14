@@ -1,0 +1,15 @@
+graph = {0:[1],1:[2],2:[0]}
+visited, stack = set(), set()
+
+def has_cycle(v):
+    visited.add(v)
+    stack.add(v)
+    for n in graph[v]:
+        if n not in visited and has_cycle(n):
+            return True
+        elif n in stack:
+            return True
+    stack.remove(v)
+    return False
+
+print(has_cycle(0))
