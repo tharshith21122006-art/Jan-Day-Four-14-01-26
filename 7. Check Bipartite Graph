@@ -1,0 +1,17 @@
+graph = {0:[1],1:[0,2],2:[1]}
+color = {}
+
+def is_bipartite(node):
+    color[node] = 0
+    queue = [node]
+    while queue:
+        u = queue.pop(0)
+        for v in graph[u]:
+            if v not in color:
+                color[v] = 1 - color[u]
+                queue.append(v)
+            elif color[v] == color[u]:
+                return False
+    return True
+
+print(is_bipartite(0))
