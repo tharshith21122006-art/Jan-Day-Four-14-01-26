@@ -1,0 +1,13 @@
+def solve(n):
+    res=[]
+    def backtrack(row,cols,diag1,diag2):
+        if row==n:
+            res.append(cols)
+            return
+        for c in range(n):
+            if c not in cols and row-c not in diag1 and row+c not in diag2:
+                backtrack(row+1, cols+[c], diag1+[row-c], diag2+[row+c])
+    backtrack(0,[],[],[])
+    return len(res)
+
+print(solve(4))
