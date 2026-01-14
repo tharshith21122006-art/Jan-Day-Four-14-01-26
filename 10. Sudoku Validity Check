@@ -1,0 +1,19 @@
+board = [
+["5","3",".",".","7",".",".",".","."],
+["6",".",".","1","9","5",".",".","."],
+[".","9","8",".",".",".",".","6","."]
+]
+
+def valid(board):
+    seen = set()
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            num = board[i][j]
+            if num != ".":
+                key = (num,i),(j,num),(i//3,j//3,num)
+                if any(k in seen for k in key):
+                    return False
+                seen.update(key)
+    return True
+
+print(valid(board))
